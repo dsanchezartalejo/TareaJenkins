@@ -1,8 +1,22 @@
 #!/bin/bash
 
-SITE_DIR="mi_sitio"
+SITE_DIR="wacala"
+URL="https://www.w3schools.com/w3css/4/w3.css"
+CSS="w3.css"
+
 
 mkdir -p $SITE_DIR
+
+if [ -f "$SITE_DIR/$CSS" ]; then
+    echo "ya estaba"
+else
+    echo "descargando"
+    if !curl -o "$SITE_DIR/$CSS" "$URL"; then
+        echo "error"
+        echo 1
+    fi
+    echo "hecho"
+fi
 
 cat <<EOL > $SITE_DIR/index.html
 <!DOCTYPE html>
